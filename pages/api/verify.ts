@@ -4,9 +4,9 @@ import axios from 'axios';
 
 const dbConfig = {
   host: 'localhost',
-  user: 'seu-usuario',
-  password: 'sua-senha',
-  database: 'seu-banco-de-dados',
+  user: 'root',
+  password: 'Ae@1254453',
+  database: 'hcaptcha',
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       const response = await axios.post('https://hcaptcha.com/siteverify', {
         response: token,
-        secret: 'a56sd98as198d1a9s1d9a8s1d9a1s5d1',
+        secret: '0xb6F0a1455503e6227156f727c41006605F0A6A80',
       });
 
       const { success } = response.data;
@@ -37,10 +37,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return;
     }
 
+    // Obtém o endereço IP do cliente
+    const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
     // Insere o voto no banco de dados
     try {
       const connection = await mysql.createConnection(dbConfig);
-      await connection.execute('INSERT INTO votos (hcaptcha_token) VALUES (?)', [token]);
+      await connection.execute('INSERT INTO votos (hcaptcha_token, ip_address, data) VALUES (?, ?, NOW())', [token, ipAddress]);
       await connection.end();
       res.status(200).json({ message: 'Voto computado com sucesso!' });
     } catch (error) {
