@@ -8,6 +8,7 @@ const Card = () => {
   const [hcaptchaToken, setHcaptchaToken] = useState("");
 
   const handleHcaptchaVerify = (token: SetStateAction<string>) => {
+    console.log("Token do hCaptcha:", token);
     setHcaptchaToken(token);
   };
 
@@ -23,6 +24,11 @@ const Card = () => {
             "Content-Type": "application/json",
           },
         });
+
+        if (!response.ok) {
+          console.error("Erro na resposta do servidor:", response.status);
+          return;
+        }
 
         const data = await response.json();
         console.log("Resposta do servidor:", data);
