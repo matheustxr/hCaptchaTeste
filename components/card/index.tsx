@@ -47,7 +47,7 @@ const Card = () => {
     >
       <div className="w-[340px] mt-5 p-5 flex flex-col gap-5 bg-sky-500 rounded text-white">
         <Image src={doguinho} alt="" className="w-[300px] rounded" />
-        <h1 className="font-bold text-3xl text-center">Gregório</h1>
+        <h1 className="font-bold text-3xl text-center">Beno</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit magnam
           ei deserunt laboriosam in commodi et corrupti. Dolores, impedit
