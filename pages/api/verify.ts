@@ -3,10 +3,10 @@ import mysql from 'mysql2/promise';
 import axios from 'axios';
 
 const dbConfig = {
-  host: 'localhost',
-  user: 'root',
-  password: 'Ae@1254453',
-  database: 'hcaptcha',
+  host: 'vps-5528980.bmouseproductions.com',
+  user: 'zomiescom_votos',
+  password: '~^@r;XFrSNM+',
+  database: 'zomiescom_votacoes',
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
