@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import mysql from 'mysql2/promise';
 import axios from 'axios';
+import Cors from 'cors';
 
 const dbConfig = {
   host: 'vps-5528980.bmouseproductions.com',
@@ -9,7 +10,28 @@ const dbConfig = {
   database: 'zomiescom_votacoes',
 };
 
+// Inicializando o cors middleware
+const cors = Cors({
+  methods: ['GET', 'HEAD', 'POST'],
+});
+
+// Helper para executar o middleware manualmente
+function runMiddleware(req: NextApiRequest, res: NextApiResponse, fn: any) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result)
+      }
+
+      return resolve(result)
+    })
+  })
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // Execute o middleware cors
+  await runMiddleware(req, res, cors);
+
   // Verifica se a requisição é POST
   if (req.method === 'POST') {
     // Verifica se o token do hCaptcha está presente no corpo da requisição
@@ -44,7 +66,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return;
     }
 
-
     // Obtém o endereço IP do cliente
     const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
@@ -62,4 +83,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(405).end(); // Método não permitido
   }
 }
-//teste

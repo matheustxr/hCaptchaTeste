@@ -15,6 +15,7 @@
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
+    "cors": "^2.8.5",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "hcaptcha": "^0.1.1",
@@ -25,5 +26,8 @@
     "react-dom": "^18.2.0",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13"
   }
 }
