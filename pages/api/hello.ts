@@ -49,7 +49,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        data: `response=${token}&secret=7f7e4173-cf27-4e66-8934-028186885398`
+        data: `response=${token}&secret=0xb6F0a1455503e6227156f727c41006605F0A6A80`
       });
 
       // Log the response from hCaptcha API
