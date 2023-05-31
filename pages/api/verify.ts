@@ -9,6 +9,7 @@ const dbConfig = {
   database: 'zomiescom_votacoes',
 };
 
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Verifica se a requisição é POST
   if (req.method === 'POST') {
@@ -23,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       const response = await axios.post('https://hcaptcha.com/siteverify', {
         response: token,
-        secret: '0xb6F0a1455503e6227156f727c41006605F0A6A80',
+        secret: '7f7e4173-cf27-4e66-8934-028186885398',
       });
 
       const { success } = response.data;
