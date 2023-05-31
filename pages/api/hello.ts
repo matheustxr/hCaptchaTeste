@@ -30,6 +30,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         data: `response=${token}&secret=7f7e4173-cf27-4e66-8934-028186885398`
       });
 
+      // Log the response from hCaptcha API
+      console.log(response.data);
 
       const { success } = response.data;
       if (!success) {
@@ -41,6 +43,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.status(500).json({ error: 'Erro na verificação do hCaptcha.' });
       return;
     }
+
 
     // Obtém o endereço IP do cliente
     const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
