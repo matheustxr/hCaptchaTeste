@@ -21,10 +21,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Verifica o hCaptcha
     try {
-      const response = await axios.post('https://hcaptcha.com/siteverify', {
-        response: token,
-        secret: '7f7e4173-cf27-4e66-8934-028186885398',
+      const response = await axios({
+        method: 'post',
+        url: 'https://hcaptcha.com/siteverify',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: `response=${token}&secret=7f7e4173-cf27-4e66-8934-028186885398`
       });
+
 
       const { success } = response.data;
       if (!success) {
