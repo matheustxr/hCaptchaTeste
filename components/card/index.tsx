@@ -16,7 +16,7 @@ const Card = () => {
 
     if (hcaptchaToken) {
       try {
-        const response = await fetch("/api/verify", {
+        const response = await fetch("/api/hello", {
           method: "POST",
           body: JSON.stringify({ token: hcaptchaToken }),
           headers: {
