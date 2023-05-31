@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     };
 
-    // Faz a requisição usando o Axios
+    // Faz a requisição usando o Axiosfsdfdfs
     try {
       const response = await axios(config);
 
